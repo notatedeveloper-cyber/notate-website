@@ -154,7 +154,8 @@ h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); line-height: var(--display-le
   background: var(--card);
   overflow: hidden;
 }
-.support-grid.two-up { grid-template-columns: repeat(2, 1fr); }
+.support-grid.cards-2 { grid-template-columns: repeat(2, 1fr); }
+.support-grid.cards-1 { grid-template-columns: 1fr; }
 
 .support-card {
   padding: 34px 30px;
@@ -162,7 +163,8 @@ h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); line-height: var(--display-le
   display: flex; flex-direction: column;
   transition: background .15s ease;
 }
-.support-card:last-child { border-right: 0; }
+.support-card:last-child,
+.support-card.is-last-visible { border-right: 0; }
 .support-card:hover { background: var(--bg-2); }
 
 .card-icon {
@@ -182,9 +184,11 @@ h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); line-height: var(--display-le
 
 @media (max-width: 860px) {
   .support-grid,
-  .support-grid.two-up { grid-template-columns: 1fr; }
+  .support-grid.cards-1,
+  .support-grid.cards-2 { grid-template-columns: 1fr; }
   .support-card { border-right: 0; border-bottom: 1px solid var(--border-2); }
-  .support-card:last-child { border-bottom: 0; }
+  .support-card:last-child,
+  .support-card.is-last-visible { border-bottom: 0; }
 }
 
 /* ---- Toast ---- */
@@ -283,7 +287,7 @@ footer { padding: 56px 0 72px; border-top: 1px solid var(--border); }
       </div>
 
       <!-- GitHub card -->
-      <div class="support-card">
+      <div class="support-card" id="github-card">
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
@@ -363,31 +367,51 @@ footer { padding: 56px 0 72px; border-top: 1px solid var(--border); }
 
 <script>
   // ---- External link config — replace placeholder strings with real URLs when ready ----
+  // Any card whose URL is still a "PASTE_…" placeholder is hidden entirely, so the
+  // page never shows a button that leads nowhere.
   const EXTERNAL_LINKS = {
-    chromeWebStore: "PASTE_CHROME_WEB_STORE_URL_HERE",
+    chromeWebStore: "https://gumroad.com",
     githubRepository: "PASTE_NOTATE_GITHUB_REPOSITORY_URL_HERE",
     financialSupport: "PASTE_FINANCIAL_SUPPORT_URL_HERE",
   };
 
   const PLACEHOLDER_PREFIX = "PASTE_";
+  function isConfigured(url) {
+    return typeof url === "string" && url.length > 0 && !url.startsWith(PLACEHOLDER_PREFIX);
+  }
 
-  // Apply Chrome Web Store link
-  if (!EXTERNAL_LINKS.chromeWebStore.startsWith(PLACEHOLDER_PREFIX)) {
+  // Chrome Web Store CTA in the nav
+  if (isConfigured(EXTERNAL_LINKS.chromeWebStore)) {
     document.getElementById('chrome-cta').href = EXTERNAL_LINKS.chromeWebStore;
   }
 
-  // Apply GitHub repository link
-  if (!EXTERNAL_LINKS.githubRepository.startsWith(PLACEHOLDER_PREFIX)) {
+  // GitHub card — wire the link, or hide the card if no URL is set yet
+  if (isConfigured(EXTERNAL_LINKS.githubRepository)) {
     document.getElementById('github-btn').href = EXTERNAL_LINKS.githubRepository;
+  } else {
+    document.getElementById('github-card').style.display = 'none';
   }
 
-  // Financial card: hide completely when URL is still a placeholder
-  if (EXTERNAL_LINKS.financialSupport.startsWith(PLACEHOLDER_PREFIX)) {
-    document.getElementById('financial-card').style.display = 'none';
-    document.getElementById('support-grid').classList.add('two-up');
-  } else {
+  // Financial card — wire the link, or hide the card if no URL is set yet
+  if (isConfigured(EXTERNAL_LINKS.financialSupport)) {
     document.getElementById('financial-btn').href = EXTERNAL_LINKS.financialSupport;
+  } else {
+    document.getElementById('financial-card').style.display = 'none';
   }
+
+  // Lay the grid out for however many cards remain visible (1, 2, or 3)
+  (function () {
+    var grid = document.getElementById('support-grid');
+    var visible = Array.prototype.filter.call(
+      grid.querySelectorAll('.support-card'),
+      function (card) { return card.style.display !== 'none'; }
+    );
+    grid.classList.remove('cards-1', 'cards-2', 'cards-3');
+    grid.classList.add('cards-' + visible.length);
+    visible.forEach(function (card, i) {
+      card.classList.toggle('is-last-visible', i === visible.length - 1);
+    });
+  })();
 
   // ---- Share / clipboard copy ----
   var toastEl = document.getElementById('toast');
