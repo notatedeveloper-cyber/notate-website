@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /invite/
+Disallow: /uninstall.html
+
+Sitemap: https://notate.live/sitemap.xml

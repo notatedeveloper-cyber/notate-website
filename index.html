@@ -1129,7 +1129,39 @@ html[data-theme="dark"] .swatch-color { box-shadow: inset 0 0 0 1px rgba(255,255
 @media (max-width: 520px) {
   .tweaks-panel { right: 12px; bottom: 12px; width: calc(100% - 24px); max-width: 320px; }
 }
+
+/* ---- Chrome Web Store badge ---- */
+.cws-wrap { margin: 28px 0 0; }
+.cws-badge {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 9px 16px; background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
+  text-decoration: none;
+  transition: transform .12s ease, border-color .15s ease;
+}
+.cws-badge:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.3); }
+.cws-icon { display: block; flex-shrink: 0; }
+.cws-text { display: flex; flex-direction: column; gap: 1px; }
+.cws-avail { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #9e9e9e; }
+.cws-store { font-size: 15px; font-weight: 600; color: #ffffff; letter-spacing: -0.01em; font-family: var(--font-display); }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Notate",
+  "applicationCategory": "BrowserApplication",
+  "operatingSystem": "Chrome",
+  "url": "https://notate.live/",
+  "installUrl": "https://chromewebstore.google.com/detail/notate/ajfbllnonaikodlbobolfgblbbkgmbbh",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -1155,7 +1187,7 @@ html[data-theme="dark"] .swatch-color { box-shadow: inset 0 0 0 1px rgba(255,255
       <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
         <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" id="sun-icon"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </button>
-      <a class="btn btn-accent" href="https://gumroad.com" target="_blank" rel="noopener">Add to Chrome</a>
+      <a class="btn btn-accent" href="https://chromewebstore.google.com/detail/notate/ajfbllnonaikodlbobolfgblbbkgmbbh" target="_blank" rel="noopener">Add to Chrome</a>
     </div>
   </div>
 </header>
@@ -1169,10 +1201,28 @@ html[data-theme="dark"] .swatch-color { box-shadow: inset 0 0 0 1px rgba(255,255
     <h1>Turn screenshots into JIRA tickets <span class="accent">in seconds.</span></h1>
     <p class="sub" style="margin-top: 22px;">Capture UI issues directly in your browser and push them to Linear or Jira in seconds. No calls, no screenshots in Slack, no follow-up threads. Free during beta.</p>
     <div class="ctas">
-      <a class="btn btn-accent btn-lg" href="https://gumroad.com" target="_blank" rel="noopener">Add to Chrome</a>
+      <a class="btn btn-accent btn-lg" href="https://chromewebstore.google.com/detail/notate/ajfbllnonaikodlbobolfgblbbkgmbbh" target="_blank" rel="noopener">Add to Chrome</a>
       <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
     </div>
     <p class="meta">From issue spotted → logged Jira/Linear in under 5s</p>
+    <div class="cws-wrap">
+      <a href="https://chromewebstore.google.com/detail/notate/ajfbllnonaikodlbobolfgblbbkgmbbh"
+         target="_blank" rel="noopener"
+         class="cws-badge"
+         aria-label="Available in the Chrome Web Store">
+        <svg class="cws-icon" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+          <path d="M12 12L12 0A12 12 0 0 1 22.39 18Z" fill="#EA4335"/>
+          <path d="M12 12L22.39 18A12 12 0 0 1 1.61 18Z" fill="#34A853"/>
+          <path d="M12 12L1.61 18A12 12 0 0 1 12 0Z" fill="#FBBC05"/>
+          <circle cx="12" cy="12" r="7" fill="white"/>
+          <circle cx="12" cy="12" r="5" fill="#4285F4"/>
+        </svg>
+        <span class="cws-text">
+          <span class="cws-avail">Available in the</span>
+          <span class="cws-store">Chrome Web Store</span>
+        </span>
+      </a>
+    </div>
 
     <!-- Animated browser demo -->
     <div class="demo" aria-hidden="true">
@@ -1527,7 +1577,7 @@ html[data-theme="dark"] .swatch-color { box-shadow: inset 0 0 0 1px rgba(255,255
     <h2>Stop turning UI issues into long conversations.</h2>
     <p class="sub">Install Notate and go from issue spotted → ticket created in seconds..</p>
     <div class="ctas">
-      <a class="btn btn-accent btn-lg" href="https://gumroad.com" target="_blank" rel="noopener">
+      <a class="btn btn-accent btn-lg" href="https://chromewebstore.google.com/detail/notate/ajfbllnonaikodlbobolfgblbbkgmbbh" target="_blank" rel="noopener">
         Get early access — free
         <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -1603,11 +1653,12 @@ html[data-theme="dark"] .swatch-color { box-shadow: inset 0 0 0 1px rgba(255,255
           <a href="#features">Features</a>
           <a href="#faq">FAQ</a>
           <a href="/support/">Support</a>
+          <a href="/changelog/">Changelog</a>
         </div>
         <div class="foot-col">
           <h5>Contact</h5>
           <a href="/cdn-cgi/l/email-protection#e9818c858586a987869d889d8cc7889999"><span class="__cf_email__" data-cfemail="98f0fdf4f4f7d8f6f7ecf9ecfdb6f9e8e8">[email&#160;protected]</span></a>
-          <a href="https://twitter.com" target="_blank" rel="noopener">Twitter / X</a>
+          <a href="https://x.com/notate_app" target="_blank" rel="noopener">Twitter / X</a>
         </div>
         <div class="foot-col">
           <h5>Legal</h5>

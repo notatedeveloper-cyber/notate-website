@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Privacy Policy — Notate</title>
-<meta name="description" content="How Notate handles your data: annotations stay local on your device, exports go only to the tools you connect, and we collect no analytics. Read the full privacy policy." />
-<link rel="canonical" href="https://notate.live/privacy/" />
+<title>Changelog — Notate</title>
+<meta name="description" content="What's new in Notate — the Chrome extension for capturing UI feedback in seconds. Release notes and updates." />
+<link rel="canonical" href="https://notate.live/changelog/" />
 <meta name="theme-color" content="#fbfaf7" />
 
 <!-- Favicons / app icons -->
@@ -19,9 +19,9 @@
 <!-- Open Graph / link preview -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Notate" />
-<meta property="og:url" content="https://notate.live/privacy/" />
-<meta property="og:title" content="Privacy Policy — Notate" />
-<meta property="og:description" content="How Notate handles your data: annotations stay local on your device, exports go only to the tools you connect, and we collect no analytics. Read the full privacy policy." />
+<meta property="og:url" content="https://notate.live/changelog/" />
+<meta property="og:title" content="Changelog — Notate" />
+<meta property="og:description" content="What's new in Notate — the Chrome extension for capturing UI feedback in seconds. Release notes and updates." />
 <meta property="og:image" content="https://notate.live/og-image.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -30,8 +30,8 @@
 
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Privacy Policy — Notate" />
-<meta name="twitter:description" content="How Notate handles your data: annotations stay local on your device, exports go only to the tools you connect, and we collect no analytics. Read the full privacy policy." />
+<meta name="twitter:title" content="Changelog — Notate" />
+<meta name="twitter:description" content="What's new in Notate — the Chrome extension for capturing UI feedback in seconds. Release notes and updates." />
 <meta name="twitter:image" content="https://notate.live/og-image.png" />
 <meta name="twitter:image:alt" content="Notate — fifteen-second UI feedback. Hit the hotkey, pin any element, push to Linear or Jira." />
 
@@ -146,10 +146,6 @@ body {
   transition: transform .12s ease, background .15s ease, border-color .15s ease, color .15s ease;
   white-space: nowrap;
 }
-.btn-primary { background: var(--fg); color: var(--bg); }
-.btn-primary:hover { transform: translateY(-1px); }
-.btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
-.btn-ghost:hover { background: var(--bg-2); }
 .btn-accent { background: var(--accent-bg); color: var(--accent-ink); }
 .btn-accent:hover { transform: translateY(-1px); filter: brightness(1.05); }
 
@@ -168,44 +164,50 @@ body {
 .eyebrow::before { content: ""; width: 6px; height: 6px; background: var(--accent-bg); border-radius: 999px; }
 h1 { margin: 0; font-size: clamp(32px, 5vw, 52px); line-height: var(--display-leading); letter-spacing: var(--display-tracking); font-weight: var(--display-weight); font-family: var(--font-display); }
 .sub { color: var(--muted); font-size: 17px; line-height: 1.55; max-width: 560px; margin: 14px 0 0; }
-.updated { font-family: var(--font-mono); font-size: 12px; color: var(--muted-2); margin: 22px 0 0; letter-spacing: 0.02em; }
 
-/* ---- Legal content ---- */
-.legal-section { padding: 60px 0 72px; }
-.legal-content { max-width: 720px; }
+/* ---- Changelog entries ---- */
+.changelog-section { padding: 60px 0 80px; }
+.changelog-list { max-width: 720px; }
 
-.tldr {
-  border: 1px solid var(--border);
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 24px 26px;
-  margin: 0 0 48px;
+.changelog-entry {
+  padding: 0 0 52px;
+  margin: 0 0 52px;
+  border-bottom: 1px solid var(--border-2);
 }
-.tldr h2 { margin: 0 0 14px; font-size: 13px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 500; }
-.tldr ul { margin: 0; padding-left: 20px; }
-.tldr li { color: var(--fg); font-size: 15px; line-height: 1.6; margin-bottom: 8px; }
-.tldr li:last-child { margin-bottom: 0; }
+.changelog-entry:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
 
-.legal-content h2.heading {
+.entry-meta {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap;
+}
+.entry-date {
+  font-family: var(--font-mono); font-size: 12px; color: var(--muted-2); letter-spacing: 0.04em;
+}
+.entry-tag {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+.changelog-entry h2 {
   font-family: var(--font-display);
-  font-size: 22px; line-height: 1.2;
-  letter-spacing: var(--display-tracking); font-weight: var(--display-weight);
-  margin: 44px 0 14px;
-  scroll-margin-top: 80px;
+  font-size: 24px; font-weight: 600;
+  letter-spacing: -0.02em; line-height: 1.15;
+  margin: 0 0 14px;
 }
-.legal-content h2.heading:first-of-type { margin-top: 0; }
-.legal-content h3 {
-  font-family: var(--font-display);
-  font-size: 16.5px; font-weight: 600; letter-spacing: -0.015em;
-  margin: 26px 0 8px;
+.changelog-entry p { color: var(--muted); font-size: 15.5px; line-height: 1.65; margin: 0 0 16px; }
+.changelog-entry ul { margin: 0 0 0; padding-left: 22px; }
+.changelog-entry li {
+  color: var(--muted); font-size: 15.5px; line-height: 1.6; margin-bottom: 10px;
 }
-.legal-content p { color: var(--muted); font-size: 15.5px; line-height: 1.65; margin: 0 0 14px; }
-.legal-content ul { margin: 0 0 16px; padding-left: 22px; }
-.legal-content li { color: var(--muted); font-size: 15.5px; line-height: 1.6; margin-bottom: 8px; }
-.legal-content a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
-.legal-content a:hover { border-bottom-color: var(--accent); }
-.legal-content strong { color: var(--fg); font-weight: 600; }
-.legal-content hr { border: 0; border-top: 1px solid var(--border-2); margin: 40px 0; }
+.changelog-entry li:last-child { margin-bottom: 0; }
+.changelog-entry strong { color: var(--fg); font-weight: 600; }
+.changelog-entry a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+.changelog-entry a:hover { border-bottom-color: var(--accent); }
 
 /* ---- Footer ---- */
 footer { padding: 56px 0 72px; border-top: 1px solid var(--border); }
@@ -262,77 +264,32 @@ footer { padding: 56px 0 72px; border-top: 1px solid var(--border); }
 <!-- ============ HERO ============ -->
 <div class="page-hero">
   <div class="wrap">
-    <div class="eyebrow">Legal</div>
-    <h1>Privacy Policy</h1>
-    <p class="sub">Notate is built privacy-first. Your annotations live on your own device, and nothing leaves it unless you choose to export it to a tool you've connected.</p>
-    <p class="updated">Last updated: June 12, 2026</p>
+    <div class="eyebrow">Product</div>
+    <h1>Changelog</h1>
+    <p class="sub">A running log of what's shipped. New entries at the top.</p>
   </div>
 </div>
 
-<!-- ============ CONTENT ============ -->
-<section class="legal-section">
+<!-- ============ ENTRIES ============ -->
+<section class="changelog-section">
   <div class="wrap">
-    <div class="legal-content">
+    <div class="changelog-list">
 
-      <div class="tldr">
-        <h2>The short version</h2>
+      <article class="changelog-entry">
+        <div class="entry-meta">
+          <span class="entry-date">June 12, 2026</span>
+          <span class="entry-tag">Public Beta</span>
+        </div>
+        <h2>Notate is live on the Chrome Web Store</h2>
+        <p>After months of internal testing, Notate is now available to everyone as a free public beta. Install it from the Chrome Web Store, hit the hotkey, and start capturing UI feedback in seconds.</p>
         <ul>
-          <li>Your pins, comments, and screenshots are stored <strong>locally in your browser</strong> — not on our servers.</li>
-          <li>When you export feedback, it goes <strong>only to the tool you connected</strong> (Linear or Jira) and to no one else.</li>
-          <li>We use <strong>Sentry</strong> for crash and error reports so we can fix bugs. It never receives your annotation content.</li>
-          <li>We <strong>don't run ad trackers, sell your data, or build a profile</strong> on you.</li>
-          <li>Uninstalling Notate removes the data it stored on your device.</li>
+          <li><strong>One-keystroke overlay</strong> — open the annotation panel without leaving the page you're reviewing.</li>
+          <li><strong>Pin any element</strong> — click any DOM element to attach a comment directly to it.</li>
+          <li><strong>Screenshots included</strong> — a screenshot of the current viewport is captured automatically with each annotation.</li>
+          <li><strong>Push to Linear or Jira</strong> — connect your workspace once and send annotations straight to your issue tracker.</li>
+          <li><strong>Local-first</strong> — all pins, comments, and screenshots live in your browser. Nothing is sent to our servers unless you export it.</li>
         </ul>
-      </div>
-
-      <h2 class="heading">1. Who we are</h2>
-      <p>Notate ("Notate", "we", "us") is a browser extension for leaving pinned visual feedback on any web page and exporting it to your issue tracker. This policy explains what data Notate handles, where it goes, and the choices you have. It covers both the Notate browser extension and this website at <a href="https://notate.live">notate.live</a>.</p>
-
-      <h2 class="heading">2. Data stored on your device</h2>
-      <p>Everything you create in Notate — the pins you drop, your comments and notes, captured screenshots, and your extension settings — is stored <strong>locally in your browser</strong> using the browser's extension storage. This data stays on your device.</p>
-      <p>We do <strong>not</strong> operate a backend that receives, syncs, or stores the feedback you create. We cannot see your annotations, the pages you visit, or your screenshots. Because this data is local, clearing your browser data or uninstalling the extension removes it.</p>
-
-      <h2 class="heading">3. Tools you connect (Linear &amp; Jira)</h2>
-      <p>Notate lets you send feedback to a third-party issue tracker. We currently support <strong>Linear</strong> and <strong>Jira</strong>. These integrations are entirely optional and only do anything once you choose to connect an account and export an item.</p>
-      <p>When you export, Notate transmits the contents of that item — which may include the title and description you wrote, your comments, the captured screenshot, and the URL of the page you were annotating — directly to the service you connected, using the authorization you granted. The access token for that connection is stored locally on your device.</p>
-      <p>Once your data reaches Linear or Jira, it is handled under <strong>that provider's</strong> privacy policy and your organization's account settings:</p>
-      <ul>
-        <li><a href="https://linear.app/privacy" target="_blank" rel="noopener">Linear Privacy Policy</a></li>
-        <li><a href="https://www.atlassian.com/legal/privacy-policy" target="_blank" rel="noopener">Atlassian / Jira Privacy Policy</a></li>
-      </ul>
-      <p>You can disconnect a connected tool at any time from the extension, which removes its stored access token from your device.</p>
-
-      <h2 class="heading">4. Crash and error reporting (Sentry)</h2>
-      <p>To find and fix bugs, Notate uses <a href="https://sentry.io" target="_blank" rel="noopener">Sentry</a> for crash and error reporting. When something goes wrong, Sentry may receive technical diagnostic data such as the error message and stack trace, the extension version, your browser and operating system type and version, and a timestamp. Sentry may also process your IP address transiently as a normal part of receiving the report.</p>
-      <p>We use this data only to diagnose and fix problems. We do <strong>not</strong> send your annotation content, screenshots, or the contents of the pages you visit to Sentry. For details on how Sentry processes data, see the <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">Sentry Privacy Policy</a>.</p>
-
-      <h2 class="heading">5. Browser permissions</h2>
-      <p>To do its job, the extension requests the browser permissions needed to capture the current page, take screenshots of it, and store your feedback locally. These permissions are used solely to deliver Notate's features on the page you're actively working on. We do not use them to monitor your browsing or collect data in the background.</p>
-
-      <h2 class="heading">6. This website</h2>
-      <p>This site is a static page hosted on GitHub Pages. It does not run analytics, advertising, or third-party tracking cookies. The only thing it stores in your browser is a small preference for your light/dark theme choice, kept locally so the site remembers it on your next visit.</p>
-      <p>As with any website, the hosting provider (GitHub) may automatically log standard technical request information, such as IP address and browser type, to serve and protect the site. That processing is governed by <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub's privacy statement</a>.</p>
-
-      <h2 class="heading">7. What we don't do</h2>
-      <ul>
-        <li>We don't sell or rent your data to anyone.</li>
-        <li>We don't use advertising trackers or build an advertising profile of you.</li>
-        <li>We don't run usage analytics that identify you.</li>
-        <li>We don't access or store your annotations on our own servers.</li>
-      </ul>
-
-      <h2 class="heading">8. Data retention &amp; your choices</h2>
-      <p>Because your feedback is stored locally, <strong>you control it</strong>. You can delete individual items in the extension, clear it through your browser's site/extension data controls, or remove all of it by uninstalling Notate. Data you've already exported to Linear or Jira lives in those tools and is managed there.</p>
-      <p>Depending on where you live, you may have rights under laws such as the GDPR or CCPA — including the right to access, correct, or delete personal data, and to object to certain processing. Since Notate keeps your content on your own device, you can exercise most of these directly. For anything else, contact us using the details below.</p>
-
-      <h2 class="heading">9. Children</h2>
-      <p>Notate is a productivity tool intended for a general, professional audience. It is not directed to children, and we do not knowingly collect personal information from children.</p>
-
-      <h2 class="heading">10. Changes to this policy</h2>
-      <p>We may update this policy as Notate evolves. When we do, we'll revise the "Last updated" date at the top of this page. Significant changes will be reflected here before they take effect.</p>
-
-      <h2 class="heading">11. Contact us</h2>
-      <p>Questions about this policy or your data? Email us at <a href="mailto:support@notate.live">support@notate.live</a> and we'll get back to you.</p>
+      </article>
 
     </div>
   </div>
