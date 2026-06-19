@@ -1760,6 +1760,181 @@
 
   /* small util */
   .center { text-align: center; }
+
+  /* ------------------------------------------------------------------ *
+   * V3 Feature Rows (merged from v3-landing)
+   * ------------------------------------------------------------------ */
+  .fsec { padding: 80px 0; }
+  .fsec + .fsec { border-top: 1px solid var(--line); }
+  .fsec.soft { background: var(--bg-soft); }
+  .frow { display: flex; gap: 72px; align-items: center; }
+  .frow.rev .fvis { order: -1; }
+  .fcopy { flex: 1; min-width: 0; }
+  .fcopy h3 {
+    font-size: clamp(26px, 3vw, 38px); font-weight: 600;
+    line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 14px;
+  }
+  .fcopy p { font-size: 16px; color: var(--muted); line-height: 1.62; margin-bottom: 20px; }
+  .fbullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .fbullets li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14.5px; color: var(--ink-2); line-height: 1.45;
+  }
+  .chk {
+    width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+    border-radius: 50%; background: var(--brand-tint);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s ease;
+  }
+  .fbullets li:hover .chk { transform: scale(1.15); }
+  .fvis { flex: 1; min-width: 0; }
+  .ftinted {
+    background: var(--tile); border: 1px solid var(--line);
+    border-radius: var(--radius-lg); padding: 28px;
+    transition: transform 0.3s ease;
+  }
+  .ftinted:hover { transform: translateY(-2px); }
+  @media (max-width: 820px) {
+    .frow, .frow.rev { flex-direction: column; gap: 36px; }
+    .frow.rev .fvis { order: 0; }
+  }
+
+  /* Context card */
+  .ctx-card {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: var(--radius-md); padding: 18px 20px;
+    box-shadow: var(--shadow-card);
+  }
+  .ctx-head {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+    font-size: 12.5px; font-weight: 600; color: var(--ink);
+  }
+  .ctx-row {
+    display: flex; align-items: center; gap: 8px; padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .ctx-row:last-child { border-bottom: none; }
+  .ctx-k { color: var(--muted-2); width: 82px; flex-shrink: 0; font-size: 11px; }
+  .ctx-v { color: var(--ink-2); font-weight: 500; font-size: 12px; min-width: 0; word-break: break-word; }
+  .ctx-v .badge {
+    display: inline-block; background: var(--brand-tint); color: var(--brand);
+    font-size: 10px; font-weight: 600; padding: 1.5px 6px; border-radius: 4px;
+  }
+  .ctx-v.err { color: #dc2626; }
+  .ctx-v.ok { color: #16a34a; }
+
+  /* Annotation visual */
+  .ann-frame {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: var(--radius-md); overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .ann-bbar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 11px 14px; background: #f5f6f8;
+    border-bottom: 1px solid var(--line);
+  }
+  .ann-dots { display: flex; gap: 5px; }
+  .ann-dots i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+  .ann-dots i:nth-child(1) { background: #ff5f57; }
+  .ann-dots i:nth-child(2) { background: #febc2e; }
+  .ann-dots i:nth-child(3) { background: #28c840; }
+  .ann-burl {
+    flex: 1; background: #fff; border: 1px solid var(--line);
+    border-radius: 6px; padding: 5px 10px;
+    font-size: 10px; color: var(--muted);
+  }
+  .ann-body { padding: 22px 24px; background: #f8f9fc; position: relative; min-height: 210px; }
+  .ab-bar { height: 8px; border-radius: 4px; background: #e0e3ef; margin-bottom: 8px; }
+  .ab-bar.w65 { width: 65%; } .ab-bar.w80 { width: 80%; } .ab-bar.w50 { width: 50%; }
+  .ab-btn {
+    width: 130px; height: 34px; border-radius: 8px;
+    background: var(--brand); opacity: 0.85;
+    margin: 16px 0; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ab-btn .pin-badge {
+    position: absolute; top: -10px; right: -10px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--brand); color: #fff; font-size: 9px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(58,30,253,0.4); border: 2.5px solid #fff;
+    animation: pinPulse 2.4s ease-out infinite;
+  }
+  @keyframes pinPulse {
+    0%,100% { box-shadow: 0 2px 8px rgba(58,30,253,0.4), 0 0 0 0 rgba(58,30,253,0.35); }
+    60% { box-shadow: 0 2px 8px rgba(58,30,253,0.4), 0 0 0 6px rgba(58,30,253,0); }
+  }
+  .ann-tip {
+    position: absolute; left: 24px; bottom: 14px;
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 10px; padding: 10px 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10); max-width: 200px; z-index: 4;
+  }
+  .ann-tip .att { font-size: 11.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .ann-tip .atd { font-size: 11px; color: var(--muted); }
+
+  /* Integration card */
+  .fint-card {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: var(--radius-md); overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .fint-head {
+    padding: 13px 16px; background: #fafafe; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12.5px; font-weight: 600; color: var(--ink);
+  }
+  .fint-thumb {
+    margin: 14px 16px; border-radius: 8px; height: 60px;
+    background: linear-gradient(135deg, #f2f4fb, #e8ebf5);
+    border: 1px solid var(--line); position: relative; overflow: hidden;
+  }
+  .fint-thumb::before {
+    content: ""; position: absolute; left: 12px; right: 12px; top: 12px;
+    height: 8px; border-radius: 4px; background: #cdd1e3;
+  }
+  .fint-thumb::after {
+    content: ""; position: absolute; left: 12px; width: 55%; top: 25px;
+    height: 6px; border-radius: 3px; background: #dde0ee;
+  }
+  .fint-title { padding: 0 16px 6px; font-size: 13px; font-weight: 600; color: var(--ink); }
+  .fint-meta { padding: 0 16px 10px; display: flex; gap: 5px; flex-wrap: wrap; }
+  .fitag {
+    display: inline-flex; font-size: 10.5px; font-weight: 500; padding: 2.5px 7px;
+    border-radius: 5px; border: 1px solid var(--line); background: var(--tile); color: var(--muted);
+  }
+  .fint-row { padding: 0 16px 8px; font-size: 12px; color: var(--muted); line-height: 1.45; }
+  .fint-dest {
+    padding: 10px 16px 14px; border-top: 1px solid var(--line);
+    display: flex; gap: 7px;
+  }
+  .fdest-btn {
+    flex: 1; padding: 7px; border-radius: 8px;
+    font: 600 11.5px/1 var(--font-sans);
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+    cursor: pointer; border: none;
+    transition: transform 0.2s ease, filter 0.15s;
+    will-change: transform;
+  }
+  .fdest-btn:hover { transform: translateY(-1px); filter: brightness(1.07); }
+  .fdest-btn:active { transform: scale(0.96); }
+  .fdest-btn.jira { background: #0052CC; color: #fff; }
+  .fdest-btn.linear { background: #5E6AD2; color: #fff; }
+
+  /* Scroll-reveal */
+  [data-reveal] {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  [data-reveal].in { opacity: 1; transform: none; }
+  [data-reveal][data-sd="1"] { transition-delay: 70ms; }
+  [data-reveal][data-sd="2"] { transition-delay: 140ms; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal], [data-reveal].in {
+      transition: none !important; opacity: 1 !important; transform: none !important;
+    }
+  }
 </style>
 </head>
 <body style="">
@@ -1785,9 +1960,10 @@
     </a>
     <nav class="nav-links">
       <a href="#problems">Why</a>
+      <a href="#how">How it works</a>
+      <a href="#details">Details</a>
       <a href="#features">Features</a>
       <a href="#compare">Compare</a>
-      <a href="#how">How it works</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="nav-cta" href="#cta">
@@ -1801,9 +1977,10 @@
   <div class="mobile-menu" id="mobileMenu">
     <div class="wrap mm-inner">
       <a href="#problems">Why <span class="arr">→</span></a>
+      <a href="#how">How it works <span class="arr">→</span></a>
+      <a href="#details">Details <span class="arr">→</span></a>
       <a href="#features">Features <span class="arr">→</span></a>
       <a href="#compare">Compare <span class="arr">→</span></a>
-      <a href="#how">How it works <span class="arr">→</span></a>
       <a href="#faq">FAQ <span class="arr">→</span></a>
       <a class="mm-cta" href="#cta">Add to Chrome <span class="chip-free">Free</span></a>
     </div>
@@ -2062,6 +2239,119 @@
 
   </div>
 </section>
+
+<!-- =========================================================== Feature Rows (from v3) -->
+<div id="details">
+
+<section class="fsec" data-screen-label="Feature – Annotate">
+  <div class="wrap">
+    <div class="frow">
+      <div class="fcopy" data-reveal>
+        <h3>Point at exactly what's broken</h3>
+        <p>Click anywhere on the page to place a pin. Notate records the element, its CSS selector, and coordinates — so developers know exactly where to look without a single back-and-forth.</p>
+        <ul class="fbullets">
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Click-to-pin on any DOM element</li>
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Freehand highlight for area annotations</li>
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Multiple pins per report</li>
+        </ul>
+      </div>
+      <div class="fvis" data-reveal data-sd="1">
+        <div class="ftinted">
+          <div class="ann-frame">
+            <div class="ann-bbar">
+              <div class="ann-dots"><i></i><i></i><i></i></div>
+              <div class="ann-burl">staging.myapp.com/checkout</div>
+            </div>
+            <div class="ann-body">
+              <div class="ab-bar w65"></div>
+              <div class="ab-bar w80" style="margin-bottom:14px"></div>
+              <div class="ab-btn">
+                <div style="width:60px;height:6px;border-radius:3px;background:rgba(255,255,255,.5)"></div>
+                <div class="pin-badge">1</div>
+              </div>
+              <div class="ab-bar w50"></div>
+              <div class="ann-tip">
+                <div class="att">Button: "Checkout"</div>
+                <div class="atd">.btn-primary · data-id="checkout-submit"</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fsec soft" data-screen-label="Feature – Context">
+  <div class="wrap">
+    <div class="frow rev">
+      <div class="fcopy" data-reveal>
+        <h3>Context is captured automatically</h3>
+        <p>No more "what browser were you on?" Notate silently records everything a developer needs to reproduce the issue — before you even type a word.</p>
+        <ul class="fbullets">
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Browser, OS, and version</li>
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full URL with all query parameters</li>
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Viewport size and device type</li>
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Console errors at time of capture</li>
+        </ul>
+      </div>
+      <div class="fvis" data-reveal data-sd="1">
+        <div class="ftinted">
+          <div class="ctx-card">
+            <div class="ctx-head">
+              <svg width="20" height="20" viewBox="0 0 180 180" fill="none" style="border-radius:5px;flex-shrink:0"><rect width="180" height="180" rx="39.375" fill="#3A1EFD"/><path d="M63.6635 135.865C59.4635 135.865 56.2715 134.563 54.0875 131.959C51.9035 129.355 50.8115 125.869 50.8115 121.501V62.4068C50.8115 58.0388 51.6095 54.5108 53.2055 51.8228C54.8855 49.0508 57.0275 47.0348 59.6315 45.7748C62.3195 44.5148 65.2175 43.8848 68.3255 43.8848C72.9455 43.8848 76.8515 45.1028 80.0435 47.5388C83.2355 49.9748 85.7135 54.2588 87.4775 60.3908L101.086 106.885H103.102V58.5008C103.102 54.0488 104.236 50.5628 106.504 48.0428C108.772 45.4388 112.006 44.1368 116.206 44.1368C120.574 44.1368 123.808 45.4388 125.908 48.0428C128.092 50.5628 129.184 54.0488 129.184 58.5008V115.453C129.184 122.509 127.63 127.717 124.522 131.077C121.414 134.437 117.046 136.117 111.418 136.117C105.706 136.117 101.254 134.605 98.0615 131.581C94.8695 128.557 92.4335 124.105 90.7535 118.225L81.8075 87.6068C81.6395 86.7668 81.3035 86.0108 80.7995 85.3388C80.3795 84.5828 79.7915 84.2048 79.0355 84.2048C78.1115 84.2048 77.4815 84.5828 77.1455 85.3388C76.8095 86.0108 76.6415 86.7668 76.6415 87.6068V121.501C76.6415 125.869 75.5495 129.355 73.3655 131.959C71.1815 134.563 67.9475 135.865 63.6635 135.865Z" fill="white"/></svg>
+              Captured context
+            </div>
+            <div class="ctx-row"><span class="ctx-k">URL</span><span class="ctx-v">staging.myapp.com/checkout?id=xyz</span></div>
+            <div class="ctx-row"><span class="ctx-k">Browser</span><span class="ctx-v">Safari 17.4 <span class="badge">macOS</span></span></div>
+            <div class="ctx-row"><span class="ctx-k">Viewport</span><span class="ctx-v">1440 × 900</span></div>
+            <div class="ctx-row"><span class="ctx-k">OS</span><span class="ctx-v">macOS 14.4 Sonoma</span></div>
+            <div class="ctx-row"><span class="ctx-k">Console</span><span class="ctx-v err">2 errors</span></div>
+            <div class="ctx-row"><span class="ctx-k">Screenshot</span><span class="ctx-v ok">✓ attached</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fsec" data-screen-label="Feature – Integrations Detail">
+  <div class="wrap">
+    <div class="frow">
+      <div class="fcopy" data-reveal>
+        <h3>One click to Linear or Jira</h3>
+        <p>Choose your tracker and hit send. Notate creates a complete, well-structured ticket with the annotated screenshot, your comment, labels, and all captured context — no copy-pasting required.</p>
+        <ul class="fbullets">
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Native Linear &amp; Jira integrations</li>
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Set project, priority, and assignee</li>
+          <li><span class="chk"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#3A1EFD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Screenshot auto-attached as an asset</li>
+        </ul>
+      </div>
+      <div class="fvis" data-reveal data-sd="1">
+        <div class="ftinted">
+          <div class="fint-card">
+            <div class="fint-head">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A1EFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Creating ticket
+            </div>
+            <div class="fint-thumb"></div>
+            <div class="fint-title">Checkout button unresponsive on Safari</div>
+            <div class="fint-meta">
+              <span class="fitag">Bug</span><span class="fitag">Safari</span><span class="fitag">High priority</span><span class="fitag">Frontend</span>
+            </div>
+            <div class="fint-row">staging.myapp.com/checkout · Safari 17.4 · 1440×900 · 2 console errors</div>
+            <div class="fint-dest">
+              <button class="fdest-btn jira">Push to Jira</button>
+              <button class="fdest-btn linear">Push to Linear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
 
 <!-- =========================================================== Features -->
 <section class="section" id="features" data-screen-label="Features">
@@ -2703,6 +2993,20 @@
     window.addEventListener('resize', function () {
       if (window.innerWidth > 720) setOpen(false);
     });
+  })();
+
+  // Scroll-reveal for v3 feature rows
+  (function () {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { obs.observe(el); });
   })();
 </script>
 
