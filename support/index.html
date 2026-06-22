@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Support — Notate</title>
-<meta name="description" content="Share Notate with your team, star us on GitHub, or support us financially. Three ways to help keep Notate growing." />
+<meta name="description" content="Share Notate with your team or support us financially. Every bit helps keep Notate growing." />
 <link rel="canonical" href="https://notate.live/support/" />
 <meta name="theme-color" content="#ffffff" />
 
@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="Notate" />
 <meta property="og:url" content="https://notate.live/support/" />
 <meta property="og:title" content="Support — Notate" />
-<meta property="og:description" content="Share Notate with your team, star us on GitHub, or support us financially. Three ways to help keep Notate growing." />
+<meta property="og:description" content="Share Notate with your team or support us financially. Every bit helps keep Notate growing." />
 <meta property="og:image" content="https://notate.live/og-image.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -31,7 +31,7 @@
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Support — Notate" />
-<meta name="twitter:description" content="Share Notate with your team, star us on GitHub, or support us financially. Three ways to help keep Notate growing." />
+<meta name="twitter:description" content="Share Notate with your team or support us financially. Every bit helps keep Notate growing." />
 <meta name="twitter:image" content="https://notate.live/og-image.png" />
 <meta name="twitter:image:alt" content="Notate — fifteen-second UI feedback. Hit the hotkey, pin any element, push to Linear or Jira." />
 
@@ -181,7 +181,7 @@ h1 {
 
 .support-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
@@ -314,7 +314,7 @@ footer {
   <div class="wrap">
     <span class="eyebrow"><span class="dot"></span> Support</span>
     <h1>Help Notate grow</h1>
-    <p class="sub">Share it with your team, give us a star, or chip in. Every bit helps keep Notate free and improving.</p>
+    <p class="sub">Share it with your team or chip in. Every bit helps keep Notate free and improving.</p>
   </div>
 </div>
 
@@ -338,21 +338,6 @@ footer {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
           Copy link
         </button>
-      </div>
-
-      <!-- GitHub card -->
-      <div class="support-card" id="github-card">
-        <div class="card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-        </div>
-        <h3>Star on GitHub</h3>
-        <p>A star helps other developers discover Notate and signals that the project is worth maintaining.</p>
-        <a class="btn btn-ghost" id="github-btn" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          Star on GitHub
-        </a>
       </div>
 
       <!-- Financial card — hidden when URL is still a placeholder -->
@@ -440,20 +425,12 @@ footer {
   // page never shows a button that leads nowhere.
   var EXTERNAL_LINKS = {
     chromeWebStore: "https://chromewebstore.google.com/detail/notate/ajfbllnonaikodlbobolfgblbbkgmbbh",
-    githubRepository: "https://github.com/notatedeveloper-cyber/notate-website",
     financialSupport: "PASTE_FINANCIAL_SUPPORT_URL_HERE",
   };
 
   var PLACEHOLDER_PREFIX = "PASTE_";
   function isConfigured(url) {
     return typeof url === "string" && url.length > 0 && !url.startsWith(PLACEHOLDER_PREFIX);
-  }
-
-  // GitHub card — wire the link, or hide the card if no URL is set yet
-  if (isConfigured(EXTERNAL_LINKS.githubRepository)) {
-    document.getElementById('github-btn').href = EXTERNAL_LINKS.githubRepository;
-  } else {
-    document.getElementById('github-card').style.display = 'none';
   }
 
   // Financial card — wire the link, or hide the card if no URL is set yet
