@@ -1710,7 +1710,7 @@
     padding: 120px 0 100px;
   }
   .final-card {
-    max-width: 880px;
+    max-width: min(880px, 100% - 32px);
     margin: 0 auto;
     background: linear-gradient(165deg, var(--brand-tint-2) 0%, var(--brand-tint) 100%);
     border: 1px solid rgba(58,30,253,0.10);
@@ -1976,7 +1976,7 @@
     .hero { padding: 72px 0 40px; }
     .section { padding: 64px 0; }
     .final { padding: 48px 0 40px; }
-    .final-card { padding: 32px 18px 36px; border-radius: 18px; }
+    .final-card { padding: 32px 18px 36px; border-radius: 18px; margin: 0 8px; }
     .final h2 { font-size: clamp(24px, 6vw, 34px); margin: 0 0 10px; }
     .final-sub { font-size: 15px; margin: 0 auto 24px; }
     .final .cta-row { gap: 10px; }
