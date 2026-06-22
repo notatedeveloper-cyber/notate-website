@@ -2825,13 +2825,18 @@
           .pv2-row { grid-template-columns: 1fr; gap: 12px; }
           .pv2-arrow-line { display: none; }
           .pv2-arrow { padding: 4px 0; }
+          .pv2-flow-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          .pv2-flow-connector { display: none !important; }
         }
       </style>
 
       <div class="pv2" aria-hidden="true">
 
         <!-- Flow diagram -->
-        <div style="display:grid;grid-template-columns:1fr 96px 1fr;align-items:center;gap:0;margin-bottom:16px;">
+        <div class="pv2-flow-grid" style="display:grid;grid-template-columns:1fr 96px 1fr;align-items:center;gap:0;margin-bottom:16px;">
 
           <!-- Left: Browser / device -->
           <div style="background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px 24px;box-shadow:0 1px 3px rgba(0,0,0,0.03),0 12px 32px -14px rgba(0,0,0,0.07);">
@@ -2873,7 +2878,7 @@
           </div>
 
           <!-- Connector -->
-          <div style="position:relative;display:flex;align-items:center;justify-content:center;align-self:stretch;">
+          <div class="pv2-flow-connector" style="position:relative;display:flex;align-items:center;justify-content:center;align-self:stretch;">
             <!-- Dashed track -->
             <div style="position:absolute;left:0;right:0;top:50%;height:2px;transform:translateY(-50%);background:repeating-linear-gradient(90deg,rgba(58,30,253,0.5) 0 6px,transparent 6px 13px);overflow:visible;"></div>
             <!-- Arrowhead -->
