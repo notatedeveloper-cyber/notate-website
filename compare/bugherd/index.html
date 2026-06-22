@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Support — Notate</title>
-<meta name="description" content="Share Notate with your team or support us financially. Every bit helps keep Notate growing." />
-<link rel="canonical" href="https://notate.live/support/" />
+<title>The BugHerd alternative built to fit your stack — Notate</title>
+<meta name="description" content="Notate pins website feedback right where you see it — then pushes it straight into Linear or Jira. No separate kanban board, no per-seat pricing, free during beta." />
+<link rel="canonical" href="https://notate.live/compare/bugherd/" />
 <meta name="theme-color" content="#ffffff" />
 
 <!-- Favicons / app icons -->
@@ -19,9 +19,9 @@
 <!-- Open Graph / link preview -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Notate" />
-<meta property="og:url" content="https://notate.live/support/" />
-<meta property="og:title" content="Support — Notate" />
-<meta property="og:description" content="Share Notate with your team or support us financially. Every bit helps keep Notate growing." />
+<meta property="og:url" content="https://notate.live/compare/bugherd/" />
+<meta property="og:title" content="The BugHerd alternative built to fit your stack — Notate" />
+<meta property="og:description" content="Notate pins website feedback right where you see it — then pushes it straight into Linear or Jira. No separate kanban board, no per-seat pricing, free during beta." />
 <meta property="og:image" content="https://notate.live/og-image.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -30,8 +30,8 @@
 
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Support — Notate" />
-<meta name="twitter:description" content="Share Notate with your team or support us financially. Every bit helps keep Notate growing." />
+<meta name="twitter:title" content="The BugHerd alternative built to fit your stack — Notate" />
+<meta name="twitter:description" content="Notate pins website feedback right where you see it — then pushes it straight into Linear or Jira. No separate kanban board, no per-seat pricing, free during beta." />
 <meta name="twitter:image" content="https://notate.live/og-image.png" />
 <meta name="twitter:image:alt" content="Notate — fifteen-second UI feedback. Hit the hotkey, pin any element, push to Linear or Jira." />
 
@@ -50,12 +50,14 @@
   --muted-2:      #9a9aa2;
   --line:         rgba(15, 15, 25, 0.07);
   --line-2:       rgba(15, 15, 25, 0.12);
+  --card:         #ffffff;
 
   --brand:        #3A1EFD;
   --brand-2:      #5A3CFF;
   --brand-ink:    #1d0fa8;
   --brand-tint:   #efeaff;
   --brand-tint-2: #f6f3ff;
+  --ok:           #2da46a;
 
   --radius-lg:    28px;
   --radius-md:    18px;
@@ -67,8 +69,7 @@
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-sans);
@@ -80,11 +81,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   letter-spacing: -0.012em;
+  overflow-x: hidden;
 }
+svg { display: block; }
 ::selection { background: var(--brand); color: #fff; }
 
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; width: 100%; }
 @media (max-width: 720px) { .wrap { padding: 0 20px; } }
+
+/* ---- Dot pattern ---- */
+.bg-pattern {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(15,15,25,0.045) 1px, transparent 1.4px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%);
+  animation: drift 60s linear infinite;
+}
+@keyframes drift {
+  from { background-position: 0 0; }
+  to   { background-position: 280px 280px; }
+}
+@media (prefers-reduced-motion: reduce) { .bg-pattern { animation: none; } }
 
 /* ---- Nav ---- */
 .nav {
@@ -130,112 +150,209 @@ body {
 }
 @media (max-width: 720px) { .nav-links { display: none; } }
 
+/* ---- Eyebrow ---- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11.5px; color: var(--muted-2);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px;
+}
+.eyebrow::before {
+  content: ""; width: 6px; height: 6px;
+  background: var(--brand); border-radius: 999px;
+}
+
+h1 {
+  font-size: clamp(40px, 5.6vw, 62px);
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+.accent { color: var(--brand); }
+
 /* ---- Buttons ---- */
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 16px; border-radius: 10px;
-  font-size: 14.5px; font-weight: 500; font-family: inherit;
-  text-decoration: none; cursor: pointer; border: 1px solid transparent;
-  transition: transform .12s ease, background .15s ease, border-color .15s ease, color .15s ease;
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 0; cursor: pointer; text-decoration: none;
+  font-family: inherit; font-weight: 500;
   white-space: nowrap;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease, color .2s ease;
 }
-.btn-primary { background: var(--ink); color: #fff; }
-.btn-primary:hover { transform: translateY(-1px); }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
-.btn-ghost:hover { background: var(--tile); }
-.btn-accent { background: var(--brand); color: #fff; }
-.btn-accent:hover { transform: translateY(-1px); filter: brightness(1.1); }
-
-/* ---- Page hero ---- */
-.page-hero {
-  padding: 72px 0 60px;
-  border-bottom: 1px solid var(--line);
-}
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 12px 6px 8px;
-  background: var(--brand-tint);
-  color: var(--brand-ink);
-  border-radius: var(--radius-pill);
-  font-size: 12.5px; font-weight: 500;
-  border: 1px solid rgba(58,30,253,0.10);
-  margin-bottom: 18px;
-}
-.eyebrow .dot {
-  width: 14px; height: 14px; border-radius: 999px;
-  background: var(--brand);
-  display: inline-flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 9px; font-weight: 700;
-}
-h1 {
-  margin: 0;
-  font-size: clamp(32px, 5vw, 52px);
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-  font-weight: 600;
-}
-.sub { color: var(--muted); font-size: 17px; line-height: 1.55; max-width: 540px; margin: 14px 0 0; }
-
-/* ---- Support cards ---- */
-.cards-section { padding: 72px 0; }
-
-.support-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: var(--bg);
-  overflow: hidden;
-}
-.support-grid.cards-2 { grid-template-columns: repeat(2, 1fr); }
-.support-grid.cards-1 { grid-template-columns: 1fr; }
-
-.support-card {
-  padding: 34px 30px;
-  border-right: 1px solid var(--line);
-  display: flex; flex-direction: column;
-  transition: background .15s ease;
-}
-.support-card:last-child,
-.support-card.is-last-visible { border-right: 0; }
-.support-card:hover { background: var(--tile); }
-
-.card-icon {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: var(--brand-tint); color: var(--brand);
-  display: grid; place-items: center;
-  margin-bottom: 22px; flex-shrink: 0;
-}
-.card-icon svg { display: block; width: 22px; height: 22px; }
-
-.support-card h3 {
-  margin: 0 0 8px; font-size: 19px; line-height: 1.2;
-  letter-spacing: -0.02em; font-weight: 600;
-}
-.support-card p { margin: 0 0 24px; color: var(--muted); font-size: 14.5px; line-height: 1.5; flex: 1; }
-
-@media (max-width: 860px) {
-  .support-grid,
-  .support-grid.cards-1,
-  .support-grid.cards-2 { grid-template-columns: 1fr; }
-  .support-card { border-right: 0; border-bottom: 1px solid var(--line); }
-  .support-card:last-child,
-  .support-card.is-last-visible { border-bottom: 0; }
-}
-
-/* ---- Toast ---- */
-.toast {
-  position: fixed; bottom: 28px; left: 50%;
-  transform: translateX(-50%) translateY(16px);
+.btn-primary {
   background: var(--ink); color: #fff;
-  padding: 11px 20px; border-radius: 10px;
-  font-size: 14px; font-weight: 500; letter-spacing: -0.01em;
-  opacity: 0;
-  transition: opacity .2s ease, transform .2s ease;
-  pointer-events: none; z-index: 100; white-space: nowrap;
+  padding: 13px 20px; border-radius: var(--radius-pill);
+  font-size: 14.5px;
+  box-shadow: 0 1px 2px rgba(15,15,25,0.04), 0 20px 40px -20px rgba(58,30,253,0.30);
 }
-.toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+.btn-primary:hover { background: var(--brand); transform: translateY(-1px); }
+.btn-primary .chip-free {
+  background: rgba(255,255,255,0.18); color: #fff;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
+  padding: 3px 8px; border-radius: var(--radius-pill);
+  text-transform: uppercase;
+}
+.btn-ghost {
+  background: transparent; color: var(--ink);
+  padding: 13px 18px; border-radius: var(--radius-pill);
+  font-size: 14.5px;
+  border: 1px solid var(--line-2);
+}
+.btn-ghost:hover { color: var(--brand); border-color: var(--brand); }
+
+/* ---- Hero ---- */
+.vs-hero { padding: 72px 0 80px; width: 100%; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+.hero-copy .sub {
+  margin-top: 20px; font-size: 18px; max-width: 540px;
+  color: var(--muted); line-height: 1.6;
+}
+.hero-copy .ctas {
+  display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap;
+}
+.hero-copy .meta {
+  margin-top: 18px;
+  color: var(--muted-2); font-size: 13px;
+  font-family: var(--font-mono);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.hero-copy .meta .dot {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 22%, transparent);
+}
+
+/* ---- Browser window ---- */
+.bw {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(15,15,25,0.04),
+    0 40px 80px -34px rgba(58,30,253,0.28),
+    0 24px 50px -28px rgba(15,15,25,0.18);
+}
+.bw-bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfbfc;
+}
+.bw-dots { display: flex; gap: 6px; }
+.bw-dots span { width: 10px; height: 10px; border-radius: 999px; }
+.bw-dots span:nth-child(1) { background: #ff5f57; }
+.bw-dots span:nth-child(2) { background: #febc2e; }
+.bw-dots span:nth-child(3) { background: #28c840; }
+.bw-url {
+  flex: 1;
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--muted);
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: 6px; padding: 5px 10px; text-align: center;
+}
+.bw-chip {
+  font-family: var(--font-mono); font-size: 10.5px;
+  color: var(--brand); background: var(--brand-tint);
+  border: 1px solid rgba(58,30,253,0.12);
+  padding: 3px 8px; border-radius: 6px;
+}
+.bw-stage {
+  position: relative;
+  height: 320px;
+  padding: 28px 32px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 35px, var(--line) 35px 36px),
+    repeating-linear-gradient(90deg, transparent 0 35px, var(--line) 35px 36px),
+    var(--card);
+}
+.bw-stage::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(120% 80% at 60% 35%, transparent 0%, var(--card) 88%);
+  pointer-events: none;
+}
+.bw-skeleton { display: flex; flex-direction: column; gap: 13px; max-width: 64%; position: relative; }
+.bw-skeleton .l { height: 9px; border-radius: 4px; background: var(--tile); }
+.bw-skeleton .l.t { height: 16px; width: 56%; background: #e8e9ef; }
+.bw-skeleton .l.s  { width: 86%; }
+.bw-skeleton .l.s2 { width: 70%; }
+.bw-cta {
+  margin-top: 6px;
+  display: inline-flex; align-items: center;
+  padding: 8px 15px; border-radius: 8px;
+  background: var(--brand); color: #fff;
+  font-size: 12.5px; font-weight: 500;
+  width: fit-content;
+}
+.bw-pin {
+  position: absolute;
+  right: 96px; top: 156px;
+  z-index: 4;
+  width: 28px; height: 28px; border-radius: 999px;
+  background: var(--brand); color: #fff;
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-weight: 600; font-size: 12px;
+  border: 2px solid var(--card);
+  box-shadow: 0 6px 18px -4px color-mix(in srgb, var(--brand) 55%, transparent);
+  animation: pulse-pin 2.6s ease-out infinite;
+}
+@keyframes pulse-pin {
+  0%   { box-shadow: 0 6px 18px -4px rgba(58,30,253,0.55), 0 0 0 0 rgba(58,30,253,0.45); }
+  70%  { box-shadow: 0 6px 18px -4px rgba(58,30,253,0.55), 0 0 0 16px rgba(58,30,253,0); }
+  100% { box-shadow: 0 6px 18px -4px rgba(58,30,253,0.55), 0 0 0 0 rgba(58,30,253,0); }
+}
+.bw-ticket {
+  position: absolute;
+  right: 22px; bottom: 22px;
+  z-index: 5; width: 252px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 13px 14px;
+  box-shadow: 0 16px 40px -14px rgba(15,15,25,0.32);
+}
+.bw-ticket .th {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.bw-ticket .who {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12px; color: var(--muted);
+}
+.bw-ticket .av {
+  width: 18px; height: 18px; border-radius: 999px;
+  background: linear-gradient(135deg, #f5a97f, #e05c28);
+}
+.bw-ticket .id {
+  font-family: var(--font-mono); font-size: 10.5px;
+  color: var(--brand); font-weight: 600;
+}
+.bw-ticket .msg { font-size: 13px; line-height: 1.45; color: var(--ink); }
+.bw-ticket .foot {
+  display: flex; align-items: center; gap: 7px;
+  margin-top: 11px; flex-wrap: wrap;
+}
+.bw-ticket .tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 3px 8px; border-radius: 6px;
+  border: 1px solid var(--line); color: var(--muted);
+}
+.bw-ticket .tag.go {
+  color: var(--ok);
+  border-color: color-mix(in srgb, var(--ok) 35%, var(--line));
+  background: color-mix(in srgb, var(--ok) 10%, transparent);
+}
+.bw-ticket .tag .sq {
+  width: 8px; height: 8px; border-radius: 2px; background: currentColor;
+}
 
 /* ---- Footer ---- */
 footer {
@@ -272,11 +389,10 @@ footer {
 @media (max-width: 520px) {
   .foot-right { flex-direction: column; gap: 24px; }
 }
-
-.svg-icon { width: 16px; height: 16px; }
 </style>
 </head>
 <body>
+<div class="bg-pattern" aria-hidden="true"></div>
 
 <!-- ============ NAV ============ -->
 <header class="nav">
@@ -284,10 +400,10 @@ footer {
     <a class="brand" href="/">
       <span class="brand-mark logo-svg" aria-label="Notate"><svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="180" height="180" rx="39.375" fill="#3A1EFD"></rect>
-<mask id="mask0_support" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
+<mask id="mask0_bugherd" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
 <rect width="180" height="180" rx="39.375" fill="#3A1EFD"></rect>
 </mask>
-<g mask="url(#mask0_support)">
+<g mask="url(#mask0_bugherd)">
 <rect x="36.002" y="164.251" width="108" height="108" rx="16.875" fill="#DCE5F5"></rect>
 </g>
 <path d="M63.6635 135.865C59.4635 135.865 56.2715 134.563 54.0875 131.959C51.9035 129.355 50.8115 125.869 50.8115 121.501V62.4068C50.8115 58.0388 51.6095 54.5108 53.2055 51.8228C54.8855 49.0508 57.0275 47.0348 59.6315 45.7748C62.3195 44.5148 65.2175 43.8848 68.3255 43.8848C72.9455 43.8848 76.8515 45.1028 80.0435 47.5388C83.2355 49.9748 85.7135 54.2588 87.4775 60.3908L101.086 106.885H103.102V58.5008C103.102 54.0488 104.236 50.5628 106.504 48.0428C108.772 45.4388 112.006 44.1368 116.206 44.1368C120.574 44.1368 123.808 45.4388 125.908 48.0428C128.092 50.5628 129.184 54.0488 129.184 58.5008V115.453C129.184 122.509 127.63 127.717 124.522 131.077C121.414 134.437 117.046 136.117 111.418 136.117C105.706 136.117 101.254 134.605 98.0615 131.581C94.8695 128.557 92.4335 124.105 90.7535 118.225L81.8075 87.6068C81.6395 86.7668 81.3035 86.0108 80.7995 85.3388C80.3795 84.5828 79.7915 84.2048 79.0355 84.2048C78.1115 84.2048 77.4815 84.5828 77.1455 85.3388C76.8095 86.0108 76.6415 86.7668 76.6415 87.6068V121.501C76.6415 125.869 75.5495 129.355 73.3655 131.959C71.1815 134.563 67.9475 135.865 63.6635 135.865Z" fill="white"></path>
@@ -310,58 +426,61 @@ footer {
 <main>
 
 <!-- ============ HERO ============ -->
-<div class="page-hero">
+<section class="vs-hero">
   <div class="wrap">
-    <span class="eyebrow"><span class="dot"></span> Support</span>
-    <h1>Help Notate grow</h1>
-    <p class="sub">Share it with your team or chip in. Every bit helps keep Notate free and improving.</p>
-  </div>
-</div>
-
-<!-- ============ CARDS ============ -->
-<section class="cards-section">
-  <div class="wrap">
-    <div class="support-grid" id="support-grid">
-
-      <!-- Share card -->
-      <div class="support-card">
-        <div class="card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-            <polyline points="16 6 12 2 8 6"/>
-            <line x1="12" y1="2" x2="12" y2="15"/>
-          </svg>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">The BugHerd alternative</span>
+        <h1>The BugHerd alternative built to fit <span class="accent">your stack.</span></h1>
+        <p class="sub">Notate pins website feedback right where you see it — then pushes it straight into Linear or Jira, the tracker your team already works in. No separate kanban board to adopt, no per-seat pricing, free during beta.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="https://chrome.google.com/webstore/detail/nndbailpemdcnccncnpkpdihnaapeihg" target="_blank" rel="noopener">
+            Add to Chrome
+            <span class="chip-free">Free</span>
+          </a>
+          <a class="btn btn-ghost" href="#problems">See the problems with BugHerd</a>
         </div>
-        <h3>Share Notate</h3>
-        <p>Know someone who demos bugs over Zoom? Send them the link — it takes 15 seconds to see why it's better.</p>
-        <button class="btn btn-primary" id="share-btn" type="button">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-          Copy link
-        </button>
+        <p class="meta"><span class="dot"></span> Feedback pinned → ticket in your tracker in under 15 seconds</p>
       </div>
 
-      <!-- Financial card — hidden when URL is still a placeholder -->
-      <div class="support-card" id="financial-card">
-        <div class="card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="bw">
+          <div class="bw-bar">
+            <div class="bw-dots"><span></span><span></span><span></span></div>
+            <div class="bw-url">acme.com/pricing</div>
+            <span class="bw-chip">notate</span>
+          </div>
+          <div class="bw-stage">
+            <div class="bw-skeleton">
+              <div class="l t"></div>
+              <div class="l"></div>
+              <div class="l s"></div>
+              <div class="l s2"></div>
+              <div class="bw-cta">Pay now</div>
+            </div>
+            <div class="bw-pin">1</div>
+            <div class="bw-ticket">
+              <div class="th">
+                <span class="who"><span class="av"></span> Sam · client</span>
+                <span class="id">ACME-204</span>
+              </div>
+              <div class="msg">Annual toggle hides the price on tablet — can't read it.</div>
+              <div class="foot">
+                <span class="tag"><span class="sq"></span> pricing</span>
+                <span class="tag go">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Pushed to Jira
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-        <h3>Support development</h3>
-        <p>We're a small team building tools we wish existed. If Notate saves you time, a contribution keeps the lights on.</p>
-        <a class="btn btn-accent" id="financial-btn" href="#" target="_blank" rel="noopener">
-          Support us
-        </a>
       </div>
-
     </div>
   </div>
 </section>
 
 </main>
-
-<!-- Toast -->
-<div class="toast" id="toast" role="status" aria-live="polite">Notate link copied!</div>
 
 <!-- ============ FOOTER ============ -->
 <footer>
@@ -371,10 +490,10 @@ footer {
         <a class="brand" href="/">
           <span class="brand-mark logo-svg" aria-hidden="true"><svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="180" height="180" rx="39.375" fill="#3A1EFD"></rect>
-<mask id="mask-foot" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
+<mask id="mask-foot-bh" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
 <rect width="180" height="180" rx="39.375" fill="#3A1EFD"></rect>
 </mask>
-<g mask="url(#mask-foot)">
+<g mask="url(#mask-foot-bh)">
 <rect x="36.002" y="164.251" width="108" height="108" rx="16.875" fill="#DCE5F5"></rect>
 </g>
 <path d="M63.6635 135.865C59.4635 135.865 56.2715 134.563 54.0875 131.959C51.9035 129.355 50.8115 125.869 50.8115 121.501V62.4068C50.8115 58.0388 51.6095 54.5108 53.2055 51.8228C54.8855 49.0508 57.0275 47.0348 59.6315 45.7748C62.3195 44.5148 65.2175 43.8848 68.3255 43.8848C72.9455 43.8848 76.8515 45.1028 80.0435 47.5388C83.2355 49.9748 85.7135 54.2588 87.4775 60.3908L101.086 106.885H103.102V58.5008C103.102 54.0488 104.236 50.5628 106.504 48.0428C108.772 45.4388 112.006 44.1368 116.206 44.1368C120.574 44.1368 123.808 45.4388 125.908 48.0428C128.092 50.5628 129.184 54.0488 129.184 58.5008V115.453C129.184 122.509 127.63 127.717 124.522 131.077C121.414 134.437 117.046 136.117 111.418 136.117C105.706 136.117 101.254 134.605 98.0615 131.581C94.8695 128.557 92.4335 124.105 90.7535 118.225L81.8075 87.6068C81.6395 86.7668 81.3035 86.0108 80.7995 85.3388C80.3795 84.5828 79.7915 84.2048 79.0355 84.2048C78.1115 84.2048 77.4815 84.5828 77.1455 85.3388C76.8095 86.0108 76.6415 86.7668 76.6415 87.6068V121.501C76.6415 125.869 75.5495 129.355 73.3655 131.959C71.1815 134.563 67.9475 135.865 63.6635 135.865Z" fill="white"></path>
@@ -418,74 +537,6 @@ footer {
     </div>
   </div>
 </footer>
-
-<script>
-  // ---- External link config — replace placeholder strings with real URLs when ready ----
-  // Any card whose URL is still a "PASTE_…" placeholder is hidden entirely, so the
-  // page never shows a button that leads nowhere.
-  var EXTERNAL_LINKS = {
-    chromeWebStore: "https://chrome.google.com/webstore/detail/nndbailpemdcnccncnpkpdihnaapeihg",
-    financialSupport: "PASTE_FINANCIAL_SUPPORT_URL_HERE",
-  };
-
-  var PLACEHOLDER_PREFIX = "PASTE_";
-  function isConfigured(url) {
-    return typeof url === "string" && url.length > 0 && !url.startsWith(PLACEHOLDER_PREFIX);
-  }
-
-  // Financial card — wire the link, or hide the card if no URL is set yet
-  if (isConfigured(EXTERNAL_LINKS.financialSupport)) {
-    document.getElementById('financial-btn').href = EXTERNAL_LINKS.financialSupport;
-  } else {
-    document.getElementById('financial-card').style.display = 'none';
-  }
-
-  // Lay the grid out for however many cards remain visible (1, 2, or 3)
-  (function () {
-    var grid = document.getElementById('support-grid');
-    var visible = Array.prototype.filter.call(
-      grid.querySelectorAll('.support-card'),
-      function (card) { return card.style.display !== 'none'; }
-    );
-    grid.classList.remove('cards-1', 'cards-2', 'cards-3');
-    grid.classList.add('cards-' + visible.length);
-    visible.forEach(function (card, i) {
-      card.classList.toggle('is-last-visible', i === visible.length - 1);
-    });
-  })();
-
-  // ---- Share / clipboard copy ----
-  var toastEl = document.getElementById('toast');
-  var toastTimer;
-
-  document.getElementById('share-btn').addEventListener('click', function () {
-    var url = 'https://notate.live';
-
-    function showToast() {
-      clearTimeout(toastTimer);
-      toastEl.classList.add('visible');
-      toastTimer = setTimeout(function () { toastEl.classList.remove('visible'); }, 2500);
-    }
-
-    function fallback(text) {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
-      document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      try { document.execCommand('copy'); } catch (_) {}
-      document.body.removeChild(ta);
-    }
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(showToast, function () { fallback(url); showToast(); });
-    } else {
-      fallback(url);
-      showToast();
-    }
-  });
-</script>
 
 </body>
 </html>
